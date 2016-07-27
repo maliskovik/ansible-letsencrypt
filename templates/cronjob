@@ -1,0 +1,3 @@
+MAILTO="{{ letsencrypt_email }}"
+
+0 4 * * 1 root {{ letsencrypt_executable }} renew -q --post-hook "/usr/sbin/nginx -t && service nginx restart"

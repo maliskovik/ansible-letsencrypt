@@ -1,0 +1,14 @@
+---
+letsencrypt_root_dir: "/opt/letsencrypt"
+letsencrypt_challenge_dir: "{{ letsencrypt_root_dir }}/challenge"
+letsencrypt_config_dir: "{{ letsencrypt_root_dir }}/config"
+letsencrypt_email: someone@example.com
+letsencrypt_key_strength: 4096
+letsencrypt_domains_list:
+  - name: example.com
+    domains:
+      - example.com
+      - e1.example.com
+letsencrypt_repo: "https://github.com/certbot/certbot.git"
+letsencrypt_executable: "{{ letsencrypt_root_dir }}/repo/certbot-auto"
+letsencrypt_version: "master"

@@ -1,0 +1,44 @@
+---
+
+- name: Create letsencrypt root dir
+  file:
+    path: "{{ letsencrypt_root_dir }}"
+    state: directory
+
+- name: Create letsencrypt challenger dir
+  file:
+    path: "{{ letsencrypt_challenge_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Create letsencrypt conf dir
+  file:
+    path: "{{ letsencrypt_config_dir }}"
+    state: directory
+
+- name: Create letsencrypt cronjob
+  template:
+    src: cronjob
+    dest: /etc/cron.d/letsencrypt
+
+- name: Install dependencies
+  apt:
+    name: git
+    state: present
+
+- name: Get letsencrypt
+  git:
+    repo: "{{ letsencrypt_repo }}"
+    dest: "{{ letsencrypt_root_dir }}/repo"
+    version: "{{ letsencrypt_version }}"
+    force: yes
+
+- name: Create domain configs
+  template:
+    src: config
+    dest: "{{ letsencrypt_config_dir}}/{{ item.name }}.ini"
+  with_items: "{{ letsencrypt_domains_list }}"
+
+- name: Get certificates
+  command: "{{letsencrypt_executable}} certonly -c {{letsencrypt_config_dir}}/{{ item.name }}.ini"
+  with_items: "{{ letsencrypt_domains_list }}"

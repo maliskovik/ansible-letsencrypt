@@ -1,0 +1,18 @@
+# Config file generated with ansible
+
+rsa-key-size = {{ letsencrypt_key_strength }}
+email = {{ letsencrypt_email }}
+domains = {% if  item.domains is defined %}
+{% for domain in item.domains %}
+{{ domain }}{% if not loop.last %}, {% endif %}
+{% endfor %}
+{% else %}
+{{ item.name }}
+{% endif %}
+
+text = True
+authenticator = webroot
+webroot-path = {{ letsencrypt_challenge_dir}}
+agree-tos = True
+expand = True
+keep = True
