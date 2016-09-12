@@ -1,6 +1,7 @@
 # Letsencrypt
 
 The letsencrypt role, installs letsencrypt, and tries to acquire certificates for all domains defined in the letsencrypt_domains_list variable, defined in the host_vars/<host name> file. To get new certificates (for new domains,subdomains), simply add the domain to the list, and run ansible.
+This role was made to work with nginx.
 
 Note that, because letsencrypt is configured to acquire certificates via webroot authentication, proper nginx configuration must be in place.
 
@@ -18,3 +19,7 @@ Note: Make sure that firewall port 443/tcp is open.
 
 ### Adding certificates for other domains/subdomains
 To add a certificate for a subdomain of an already configured domain, add the subdomain to the letsencrypt_domains_list variable and run ansible with letsencrypt role. Don't forget to reload nginx afterwards so it starts using the new certificate.
+
+### Important details
+If a (sub)domain is removed from the list or the order is changed, a new certificate will be generated. For example:
+If a certificate for example.com exists in /etc/letsencrypt/example.com, removing a domain from list will create a new directory "/etc/letsencrypt/example.com-001" where the new certificate will be placed. It is safe in such cases to remove the whole /etc/letsencrypt directory and issue all certificates anew. 
