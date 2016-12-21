@@ -4,7 +4,7 @@
 - include: install_git.yml
   when: ansible_os_family != "Archlinux"
 
-- inclide: install_archlinux.yml
+- include: install_archlinux.yml
   when: ansible_os_family == "Archlinux"
 
-- include: get_certificate.yml
+- include: get_certificates.yml
