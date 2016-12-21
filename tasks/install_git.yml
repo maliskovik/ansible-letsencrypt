@@ -1,0 +1,11 @@
+- name: Install dependencies
+  apt:
+    name: git
+    state: present
+
+- name: Get letsencrypt
+  git:
+    repo: "{{ letsencrypt_repo }}"
+    dest: "{{ letsencrypt_root_dir }}/repo"
+    version: "{{ letsencrypt_version }}"
+    force: yes

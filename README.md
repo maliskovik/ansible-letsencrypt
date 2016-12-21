@@ -22,4 +22,4 @@ To add a certificate for a subdomain of an already configured domain, add the su
 
 ### Important details
 If a (sub)domain is removed from the list or the order is changed, a new certificate will be generated. For example:
-If a certificate for example.com exists in /etc/letsencrypt/example.com, removing a domain from list will create a new directory "/etc/letsencrypt/example.com-001" where the new certificate will be placed. It is safe in such cases to remove the whole /etc/letsencrypt directory and issue all certificates anew. 
+If a certificate for example.com exists in /etc/letsencrypt/example.com, removing a domain from list will create a new directory "/etc/letsencrypt/example.com-001" where the new certificate will be placed. It is safe in such cases to remove the whole /etc/letsencrypt directory and issue all certificates anew.

@@ -1,0 +1,5 @@
+---
+- name: Install Requirements - Archlinux
+  pacman:
+    name: certbot
+    state: latest

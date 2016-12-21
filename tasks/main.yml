@@ -1,3 +1,10 @@
 ---
 
-- include: letsencrypt.yml
+- include: base_layout.yml
+- include: install_git.yml
+  when: ansible_os_family != "Archlinux"
+
+- inclide: install_archlinux.yml
+  when: ansible_os_family == "Archlinux"
+
+- include: get_certificate.yml

@@ -1,0 +1,22 @@
+---
+
+- name: Create letsencrypt root dir
+  file:
+    path: "{{ letsencrypt_root_dir }}"
+    state: directory
+
+- name: Create letsencrypt challenger dir
+  file:
+    path: "{{ letsencrypt_challenge_dir }}"
+    state: directory
+    mode: 0755
+
+- name: Create letsencrypt conf dir
+  file:
+    path: "{{ letsencrypt_config_dir }}"
+    state: directory
+
+- name: Create letsencrypt cronjob
+  template:
+    src: cronjob
+    dest: /etc/cron.d/letsencrypt
