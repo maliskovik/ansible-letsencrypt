@@ -1,8 +1,3 @@
-- name: Install dependencies
-  apt:
-    name: git
-    state: present
-
 - name: Get letsencrypt
   git:
     repo: "{{ letsencrypt_repo }}"

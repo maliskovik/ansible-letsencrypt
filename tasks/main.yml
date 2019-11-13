@@ -2,7 +2,10 @@
 
 - include: base_layout.yml
 - include: install_git.yml
-  when: ansible_os_family != "Archlinux"
+  when: ansible_os_family == "Debian"
+
+- include: install_centos.yml
+  when: ansible_os_family == "RedHat"
 
 - include: install_archlinux.yml
   when: ansible_os_family == "Archlinux"
