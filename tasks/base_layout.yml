@@ -7,7 +7,7 @@
 
 - name: Create letsencrypt challenger dir
   file:
-    path: "{{ letsencrypt_challenge_dir }}"
+    path: "{{ letsencrypt_challenge_dir }}/.well-known/acme-challenge"
     state: directory
     mode: 0755
 
