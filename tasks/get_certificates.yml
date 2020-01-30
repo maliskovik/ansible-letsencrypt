@@ -7,6 +7,6 @@
   when: letsencrypt_domains_list is defined
 
 - name: Get certificates
-  command: "{{letsencrypt_executable}} certonly -n -c {{letsencrypt_config_dir}}/{{ item.name }}.ini"
+  command: "{{ letsencrypt_executable }} certonly -n -c {{ letsencrypt_config_dir }}/{{ item.name }}.ini"
   with_items: "{{ letsencrypt_domains_list|default(omit) }}"
   when: letsencrypt_domains_list is defined
