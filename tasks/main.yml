@@ -4,7 +4,7 @@
 - include: install_git.yml
   when: ansible_os_family == "Debian"
 
-- include: install_centos.yml
+- include: install_git.yml
   when: ansible_os_family == "RedHat"
 
 - include: install_archlinux.yml
