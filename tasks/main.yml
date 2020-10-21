@@ -2,12 +2,21 @@
 
 - include: base_layout.yml
 - include: install_git.yml
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_lsb.id == "Ubuntu"
+    - ansible_lsb.release is version('18.04', '<=')
 
 - include: install_git.yml
   when: ansible_os_family == "RedHat"
 
 - include: install_archlinux.yml
   when: ansible_os_family == "Archlinux"
+
+- include: install_ubuntu.yml
+  when:
+    - ansible_os_family == "Debian"
+    - ansible_lsb.id == "Ubuntu"
+    - ansible_lsb.release is version('20.04', '>=')
 
 - include: get_certificates.yml
