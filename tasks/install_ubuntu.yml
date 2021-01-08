@@ -1,5 +1,11 @@
 ---
-- name: Install Requirements - Ubuntu
+- name: Remove in apt if exists - Ubuntu
   apt:
     name: certbot
-    state: latest
+    state: absent
+
+- name: Install Certbot - Ubuntu
+  snap:
+    name: certbot
+    state: present
+    classic: yes

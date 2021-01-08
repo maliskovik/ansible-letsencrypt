@@ -10,5 +10,5 @@ letsencrypt_domains_list:
       - example.com
       - e1.example.com
 letsencrypt_repo: "https://github.com/certbot/certbot.git"
-letsencrypt_executable: "{{ letsencrypt_root_dir }}/repo/certbot-auto"
+letsencrypt_executable: "certbot"
 letsencrypt_version: "master"

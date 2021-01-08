@@ -5,7 +5,7 @@
   when:
     - ansible_os_family == "Debian"
     - ansible_lsb.id == "Ubuntu"
-    - ansible_lsb.release is version('18.04', '<=')
+    - ansible_lsb.release is version('14.04', '<=')
 
 - include: install_git.yml
   when: ansible_os_family == "RedHat"
@@ -17,6 +17,5 @@
   when:
     - ansible_os_family == "Debian"
     - ansible_lsb.id == "Ubuntu"
-    - ansible_lsb.release is version('20.04', '>=')
 
 - include: get_certificates.yml
