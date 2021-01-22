@@ -4,6 +4,11 @@
     name: certbot
     state: absent
 
+- name: Install snap if not yet present
+  apt:
+    name: snapd
+    state: present
+
 - name: Install Certbot - Ubuntu
   snap:
     name: certbot
