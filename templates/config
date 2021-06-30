@@ -11,7 +11,7 @@ domains = {% if  item.domains is defined %}
 {% endif %}
 
 text = True
-authenticator = webroot
+authenticator = {{ letsencrypt_plugin }}
 webroot-path = {{ letsencrypt_challenge_dir}}
 agree-tos = True
 expand = True

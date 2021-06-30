@@ -12,3 +12,4 @@ letsencrypt_domains_list:
 letsencrypt_repo: "https://github.com/certbot/certbot.git"
 letsencrypt_executable: "certbot"
 letsencrypt_version: "master"
+letsencrypt_plugin: "webroot"
