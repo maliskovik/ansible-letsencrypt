@@ -7,7 +7,7 @@
     - ansible_lsb.id == "Ubuntu"
     - ansible_lsb.release is version('14.04', '<=')
 
-- include: install_git.yml
+- include: install_centos.yml
   when: ansible_os_family == "RedHat"
 
 - include: install_archlinux.yml

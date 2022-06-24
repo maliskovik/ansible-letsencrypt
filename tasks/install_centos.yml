@@ -1,5 +1,34 @@
 ---
+
 - name: Install Requirements - Centos
   yum:
+    name: snapd
+    state: present
+
+- name: Create snap symlink
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    owner: root
+    group: root
+    state: link
+
+- name: Start snapd
+  service:
+    name: snapd
+    state: started
+    enabled: yes
+
+- name: Install Certbot - Centos
+  snap:
     name: certbot
     state: present
+    classic: yes
+
+- name: Create snap symlink
+  file:
+    src: /var/lib/snapd/snap/bin/certbot
+    dest: /bin/certbot
+    owner: root
+    group: root
+    state: link
