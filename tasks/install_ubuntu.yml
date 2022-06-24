@@ -4,13 +4,18 @@
     name: certbot
     state: absent
 
-- name: Install snap if not yet present
+- name: Install snap if not present
   apt:
     name: snapd
     state: present
 
-- name: Install Certbot - Ubuntu
+- name: Remove Certbot - Ubuntu
   snap:
     name: certbot
-    state: present
-    classic: yes
+    state: absent
+
+- name: Install plugins
+  pip:
+    name: "{{ letsencrypt_pip_packages }}"
+    state: latest
+    executable: pip3

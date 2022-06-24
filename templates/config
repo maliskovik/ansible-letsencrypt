@@ -13,8 +13,11 @@ domains = {% if  item.domains is defined %}
 text = True
 authenticator = {{ letsencrypt_plugin }}
 
-{% if letsencrypt_plugin == "webroot" %}
+{% if domain.plugin| default(letsencrypt_plugin) == "webroot" %}
 webroot-path = {{ letsencrypt_challenge_dir}}
+{% endif%}
+{% if domain.plugin| default(letsencrypt_plugin) == "dns-godaddy" %}
+dns-godaddy-credentials = {{ letsencrypt_dns_secrets_dir }}/{{ letsencrypt_dns_secret }}.ini
 {% endif%}
 
 agree-tos = True

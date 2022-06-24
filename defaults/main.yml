@@ -2,6 +2,7 @@
 letsencrypt_root_dir: "/opt/letsencrypt"
 letsencrypt_challenge_dir: "{{ letsencrypt_root_dir }}/challenge"
 letsencrypt_config_dir: "{{ letsencrypt_root_dir }}/config"
+letsencrypt_dns_secrets_dir: "{{ letsencrypt_root_dir }}/secrets"
 letsencrypt_email: someone@example.com
 letsencrypt_key_strength: 4096
 letsencrypt_domains_list:

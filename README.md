@@ -5,7 +5,32 @@ This role was made to work with nginx.
 
 Note that, because letsencrypt is configured to acquire certificates via webroot authentication, proper nginx configuration must be in place.
 
-### First time certificate acquiry
+## Variables
+mandatory variables:
+* letsencrypt_email: "it@cosylab.com"
+* letsencrypt_domains_list: - list of domains to get cert for
+  - name: "<name>" - user friendly name of the config
+    domains: - list of domain names this cert is valid for
+    plugin: overrides letsencrypt_plugin
+    dns_secret: optional - which secret to use (see letsencrypt_dns_secrets.name below)
+
+Optional variables:
+* letsencrypt_key_strength: default(4096)
+* letsencrypt_executable: path to certbot binary default(/snap/bin/certbot)
+* letsencrypt_root_dir: Where to store configs and challanges default("/opt/letsencrypt")
+* letsencrypt_config_dir: default config dir - defaults inside the root dir.
+* letsencrypt_challenge_dir: challane dir, default inside root dir.
+* letsencrypt_plugin: Which plugin to use to get certs - default "webroot"
+Optional variables for DNS authentication:
+* letsencrypt_dns_secrets: - object - list of items that represent dns secrets
+  - name: user friendly name - used for identification in configuration
+    type: can be "dns-godaddy" or "dns-cloudflare" for now. Can add more if needed
+    key: identifier "key" in godaddy case or email in cloudflare case
+    secret: the secret or key(as refered to at cloudflare)
+* letsencrypt_dns_secret: Default secret to use (secret name) as used in the letsencrypt_dns_secrets objects. This can be ovverriden per domain.
+* letsencrypt_dns_secrets_dir: Directory where .ini secrets files are stored.
+
+## First time certificate acquiry
 To acquire certificates for a new domain for the first time with minimal/zero downtime:
 
 * Update nginx config files to include the letsencrypt.inc file, which defines the location necessary for the webroot authentication. This file must be included in all nginx server definitions for which we will be fetching certificates. And run ansible with the nginx role.
@@ -17,9 +42,9 @@ To acquire certificates for a new domain for the first time with minimal/zero do
 
 Note: Make sure that firewall port 443/tcp is open.
 
-### Adding certificates for other domains/subdomains
+## Adding certificates for other domains/subdomains
 To add a certificate for a subdomain of an already configured domain, add the subdomain to the letsencrypt_domains_list variable and run ansible with letsencrypt role. Don't forget to reload nginx afterwards so it starts using the new certificate.
 
-### Important details
+## Important details
 If a (sub)domain is removed from the list or the order is changed, a new certificate will be generated. For example:
 If a certificate for example.com exists in /etc/letsencrypt/example.com, removing a domain from list will create a new directory "/etc/letsencrypt/example.com-001" where the new certificate will be placed. It is safe in such cases to remove the whole /etc/letsencrypt directory and issue all certificates anew.

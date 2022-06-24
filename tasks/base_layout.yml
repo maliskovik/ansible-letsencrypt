@@ -16,6 +16,11 @@
     path: "{{ letsencrypt_config_dir }}"
     state: directory
 
+- name: Create letsencrypt secrets dir
+  file:
+    path: "{{ letsencrypt_dns_secrets_dir }}"
+    state: directory
+
 - name: Create letsencrypt cronjob
   template:
     src: cronjob

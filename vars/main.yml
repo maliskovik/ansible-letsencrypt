@@ -1,0 +1,5 @@
+---
+
+letsencrypt_pip_packages:
+  - certbot
+  - certbot-dns-godaddy
