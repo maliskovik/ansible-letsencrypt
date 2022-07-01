@@ -4,6 +4,9 @@
   file:
     path: "{{ letsencrypt_root_dir }}"
     state: directory
+    owner: "root"
+    group: "root"
+    mode: 0755
 
 - name: Create letsencrypt challenger dir
   file:
@@ -15,11 +18,17 @@
   file:
     path: "{{ letsencrypt_config_dir }}"
     state: directory
+    owner: "root"
+    group: "root"
+    mode: 0700
 
 - name: Create letsencrypt secrets dir
   file:
     path: "{{ letsencrypt_dns_secrets_dir }}"
     state: directory
+    owner: "root"
+    group: "root"
+    mode: 0700
 
 - name: Create letsencrypt cronjob
   template:

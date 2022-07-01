@@ -14,6 +14,7 @@
     group: root
     dest: "{{ letsencrypt_dns_secrets_dir}}/{{ item.name }}.ini"
   with_items: "{{ letsencrypt_dns_secrets }}"
+  when: letsencrypt_dns_secrets is defined
 
 - name: Get certificates
   command: "{{ letsencrypt_executable }} certonly -n -c {{ letsencrypt_config_dir }}/{{ item.name }}.ini"

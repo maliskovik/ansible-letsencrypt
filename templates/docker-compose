@@ -1,0 +1,11 @@
+services:
+  certbot:
+    image: maliskovik/certbot
+    volumes:
+      - type: bind
+        source: /etc/letsencrypt
+        target: /etc/letsencrypt
+      - type: bind
+        source: {{ letsencrypt_root_dir }}
+        target: {{ letsencrypt_root_dir }}
+    command: certbot

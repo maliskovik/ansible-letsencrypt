@@ -1,4 +1,1 @@
 ---
-# Nginx role dependencies
-dependencies:
-  - role: pip

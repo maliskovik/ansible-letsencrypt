@@ -5,6 +5,14 @@ This role was made to work with nginx.
 
 Note that, because letsencrypt is configured to acquire certificates via webroot authentication, proper nginx configuration must be in place.
 
+## Important note
+Certbot can be installed and used in many ways.
+This role started by using certbot bare - by cloning the git repository and running it from there.
+It has since moved to installation via the native package manager, snap and pip.
+Pip install has been necessary in order to use 3rd party plugins. But it hsa proven to be problematic as it can and will break Python dependencies.
+So if you need plugins, use the "docker" letsencrypt_install_method. Otherwise use "native"
+The docker image will be further expanded in the future, to cover more plugins.
+
 ## Variables
 mandatory variables:
 * letsencrypt_email: "it@cosylab.com"
@@ -13,13 +21,14 @@ mandatory variables:
     domains: - list of domain names this cert is valid for
     plugin: overrides letsencrypt_plugin
     dns_secret: optional - which secret to use (see letsencrypt_dns_secrets.name below)
+* letsencrypt_install_method: string representing the install method
+* letsencrypt_service_hooks: List of service to restart after renew
 
 Optional variables:
-* letsencrypt_key_strength: default(4096)
-* letsencrypt_executable: path to certbot binary default(/snap/bin/certbot)
 * letsencrypt_root_dir: Where to store configs and challanges default("/opt/letsencrypt")
 * letsencrypt_config_dir: default config dir - defaults inside the root dir.
 * letsencrypt_challenge_dir: challane dir, default inside root dir.
+* letsencrypt_key_strength: default(4096)
 * letsencrypt_plugin: Which plugin to use to get certs - default "webroot"
 Optional variables for DNS authentication:
 * letsencrypt_dns_secrets: - object - list of items that represent dns secrets

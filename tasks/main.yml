@@ -1,21 +1,53 @@
 ---
 
-- include: base_layout.yml
-- include: install_git.yml
+- name: Set certbot executable - docker
+  set_fact:
+    letsencrypt_executable: "docker-compose run --rm -f {{ letsencrypt_docker_compose_yml }} certbot"
+  when: "letsencrypt_install_method == 'docker'"
+
+- name: Set certbot executable - Arch native
+  set_fact:
+    letsencrypt_executable: "/usr/bin/certbot"
   when:
-    - ansible_os_family == "Debian"
-    - ansible_lsb.id == "Ubuntu"
-    - ansible_lsb.release is version('14.04', '<=')
+    - "letsencrypt_install_method == 'native'"
+    -  ansible_os_family == "Archlinux"
+
+- name: Set certbot executable - Ubuntu snap
+  set_fact:
+    letsencrypt_executable: "/snap/bin/certbot"
+  when:
+    - "letsencrypt_install_method == 'native'"
+    -  ansible_os_family == "Debian"
+
+- name: Set certbot executable - RedHat snap
+  set_fact:
+    letsencrypt_executable: "/snap/bin/certbot"
+  when:
+    - "letsencrypt_install_method == 'native'"
+    -  ansible_os_family == "RedHat"
+
+- include: base_layout.yml
+- include_role:
+    name: docker
+  when: "letsencrypt_install_method == 'docker'"
 
 - include: install_centos.yml
-  when: ansible_os_family == "RedHat"
+  when:
+    - "letsencrypt_install_method == 'native'"
+    - "ansible_os_family == 'RedHat'"
 
 - include: install_archlinux.yml
-  when: ansible_os_family == "Archlinux"
+  when:
+    - "letsencrypt_install_method == 'native'"
+    - "ansible_os_family == 'Archlinux'"
 
 - include: install_ubuntu.yml
   when:
-    - ansible_os_family == "Debian"
-    - ansible_lsb.id == "Ubuntu"
+    - "letsencrypt_install_method == 'native'"
+    - "ansible_os_family == 'Debian'"
+
+- include: install_docker.yml
+  when:
+    - "letsencrypt_install_method == 'docker'"
 
 - include: get_certificates.yml
