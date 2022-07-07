@@ -16,7 +16,15 @@
   with_items: "{{ letsencrypt_dns_secrets }}"
   when: letsencrypt_dns_secrets is defined
 
+- name: Create LE dir
+  file:
+    path: "/etc/letsencrypt"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: 0755
+
 - name: Get certificates
-  command: "{{ letsencrypt_executable }} certonly -n -c {{ letsencrypt_config_dir }}/{{ item.name }}.ini"
+  command: "{{ letsencrypt_executable }} certbot certonly -n -c {{ letsencrypt_config_dir }}/{{ item.name }}.ini"
   with_items: "{{ letsencrypt_domains_list|default(omit) }}"
   when: letsencrypt_domains_list is defined

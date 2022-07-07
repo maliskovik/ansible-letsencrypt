@@ -1,3 +1,4 @@
+version: "3.3"
 services:
   certbot:
     image: maliskovik/certbot
@@ -9,3 +10,7 @@ services:
         source: {{ letsencrypt_root_dir }}
         target: {{ letsencrypt_root_dir }}
     command: certbot
+    networks:
+      - le_default
+networks:
+  le_default:

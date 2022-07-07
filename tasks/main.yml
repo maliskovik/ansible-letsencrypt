@@ -2,7 +2,7 @@
 
 - name: Set certbot executable - docker
   set_fact:
-    letsencrypt_executable: "docker-compose run --rm -f {{ letsencrypt_docker_compose_yml }} certbot"
+    letsencrypt_executable: "docker-compose -f {{ letsencrypt_docker_compose_yml }} run --rm certbot"
   when: "letsencrypt_install_method == 'docker'"
 
 - name: Set certbot executable - Arch native

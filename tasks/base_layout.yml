@@ -30,6 +30,11 @@
     group: "root"
     mode: 0700
 
+- name: Remove default cronjob
+  file:
+    path: "/etc/cron.d/certbot"
+    state: absent
+
 - name: Create letsencrypt cronjob
   template:
     src: cronjob

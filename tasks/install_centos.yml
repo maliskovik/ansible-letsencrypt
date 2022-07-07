@@ -5,7 +5,7 @@
     name: snapd
     state: present
 
-- name: Create snap symlink
+- name: Create snap classic symlink
   file:
     src: /var/lib/snapd/snap
     dest: /snap
