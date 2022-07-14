@@ -4,5 +4,5 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 0 4 * * 1 root {{ letsencrypt_executable }} certbot renew -q
 {% for service in letsencrypt_service_hooks %}
-0 15 * * 1 root systemctl restart {{ service }}
+15 4 * * 1 root systemctl restart {{ service }}
 {% endfor %}
