@@ -26,28 +26,27 @@
     - "letsencrypt_install_method == 'native'"
     -  ansible_os_family == "RedHat"
 
-- include: base_layout.yml
-- include_role:
-    name: docker
+- ansible.builtin.include_tasks: base_layout.yml
+- ansible.builtin.include_tasks: docker
   when: "letsencrypt_install_method == 'docker'"
 
-- include: install_centos.yml
+- ansible.builtin.include_tasks: install_centos.yml
   when:
     - "letsencrypt_install_method == 'native'"
     - "ansible_os_family == 'RedHat'"
 
-- include: install_archlinux.yml
+- ansible.builtin.include_tasks: install_archlinux.yml
   when:
     - "letsencrypt_install_method == 'native'"
     - "ansible_os_family == 'Archlinux'"
 
-- include: install_ubuntu.yml
+- ansible.builtin.include_tasks: install_ubuntu.yml
   when:
     - "letsencrypt_install_method == 'native'"
     - "ansible_os_family == 'Debian'"
 
-- include: install_docker.yml
+- ansible.builtin.include_tasks: install_docker.yml
   when:
     - "letsencrypt_install_method == 'docker'"
 
-- include: get_certificates.yml
+- ansible.builtin.include_tasks: get_certificates.yml
