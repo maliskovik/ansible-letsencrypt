@@ -27,8 +27,6 @@
     -  ansible_os_family == "RedHat"
 
 - ansible.builtin.include_tasks: base_layout.yml
-- ansible.builtin.include_tasks: docker
-  when: "letsencrypt_install_method == 'docker'"
 
 - ansible.builtin.include_tasks: install_centos.yml
   when:
