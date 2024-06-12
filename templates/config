@@ -19,6 +19,10 @@ webroot-path = {{ letsencrypt_challenge_dir}}
 {% if domain.plugin| default(letsencrypt_plugin) == "dns-godaddy" %}
 dns-godaddy-credentials = {{ letsencrypt_dns_secrets_dir }}/{{ letsencrypt_dns_secret }}.ini
 {% endif%}
+{% if domain.plugin| default(letsencrypt_plugin) == "dns-cloudflare" %}
+dns-cloudflare-credentials = {{ letsencrypt_dns_secrets_dir }}/{{ letsencrypt_dns_secret }}.ini
+dns-cloudflare-propagation-seconds = 30
+{% endif%}
 
 agree-tos = True
 expand = True
