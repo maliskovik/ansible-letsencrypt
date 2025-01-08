@@ -28,7 +28,8 @@ Optional variables:
 * letsencrypt_root_dir: Where to store configs and challanges default("/opt/letsencrypt")
 * letsencrypt_config_dir: default config dir - defaults inside the root dir.
 * letsencrypt_challenge_dir: challane dir, default inside root dir.
-* letsencrypt_key_strength: default(4096)
+* letsencrypt_key_type: Type of key to use "rsa" or "ecdsa"
+* letsencrypt_rsa_key_strength: default(4096)
 * letsencrypt_plugin: Which plugin to use to get certs - default "webroot"
 Optional variables for DNS authentication:
 * letsencrypt_dns_secrets: - object - list of items that represent dns secrets

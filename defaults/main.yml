@@ -5,8 +5,10 @@ letsencrypt_config_dir: "{{ letsencrypt_root_dir }}/config"
 letsencrypt_dns_secrets_dir: "{{ letsencrypt_root_dir }}/secrets"
 letsencrypt_docker_dir: "{{ letsencrypt_root_dir }}/docker"
 letsencrypt_docker_compose_yml: "{{ letsencrypt_docker_dir}}/docker-compose.yml"
+letsencrypt_docker_image: "maliskovik/certbot"
 letsencrypt_email: someone@example.com
-letsencrypt_key_strength: 4096
+letsencrypt_key_type: "ecdsa"
+letsencrypt_rsa_key_strength: 4096
 letsencrypt_domains_list:
   - name: example.com
     domains:

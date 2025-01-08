@@ -1,6 +1,12 @@
 # Config file generated with ansible
+{% if item.key_type| default(letsencrypt_key_type) == "rsa" %}
+key-type = rsa
+rsa-key-size = {{ letsencrypt_rsa_key_strength }}
+{% endif %}
+{% if item.key_type| default(letsencrypt_key_type) == "ecdsa" %}
+key-type = ecdsa
+{% endif %}
 
-rsa-key-size = {{ letsencrypt_key_strength }}
 email = {{ letsencrypt_email }}
 domains = {% if  item.domains is defined %}
 {% for domain in item.domains %}
