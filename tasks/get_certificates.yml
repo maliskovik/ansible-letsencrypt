@@ -3,7 +3,7 @@
   template:
     src: config
     dest: "{{ letsencrypt_config_dir}}/{{ item.name }}.ini"
-  with_items: "{{ letsencrypt_domains_list|default(omit) }}"
+  with_items: "{{ letsencrypt_domains_list|default('') }}"
   when: letsencrypt_domains_list is defined
 
 - name: Create secrets
@@ -26,5 +26,5 @@
 
 - name: Get certificates
   command: "{{ letsencrypt_executable }} certonly -n -c {{ letsencrypt_config_dir }}/{{ item.name }}.ini"
-  with_items: "{{ letsencrypt_domains_list|default(omit) }}"
+  with_items: "{{ letsencrypt_domains_list|default('') }}"
   when: letsencrypt_domains_list is defined

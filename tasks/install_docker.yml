@@ -17,6 +17,6 @@
     dest: "{{ letsencrypt_docker_compose_yml }}"
   when: "letsencrypt_install_method == 'docker'"
 
-- name: Pull fresh image 
-  command: 
+- name: Pull fresh image
+  command:
     cmd: "docker pull maliskovik/certbot"

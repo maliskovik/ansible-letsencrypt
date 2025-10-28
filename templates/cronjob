@@ -3,6 +3,6 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 0 4 * * 1 root {{ letsencrypt_executable }} renew -q
-{% for service in letsencrypt_service_hooks %}
+{% for service in letsencrypt_service_hooks|default('') %}
 15 4 * * 1 root systemctl restart {{ service }}
 {% endfor %}
