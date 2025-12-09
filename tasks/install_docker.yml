@@ -19,4 +19,4 @@
 
 - name: Pull fresh image
   command:
-    cmd: "docker pull maliskovik/certbot"
+    cmd: "docker pull {{ letsencrypt_docker_image }}"

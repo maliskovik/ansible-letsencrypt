@@ -1,0 +1,7 @@
+---
+- name: Install Certbot - Ubuntu riscv
+  apt:
+    name:
+      - certbot
+      - python3-certbot-dns-cloudflare
+    state: present

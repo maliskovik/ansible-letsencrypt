@@ -1,5 +1,5 @@
 ---
 - name: Install Requirements - Archlinux
   pacman:
-    name: certbot
+    name: "{{ letsencrypt_archlinux_native_dependencies }}"
     state: latest

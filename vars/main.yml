@@ -1,5 +1,8 @@
 ---
-
 letsencrypt_pip_packages:
   - certbot
   - certbot-dns-godaddy
+
+letsencrypt_archlinux_native_dependencies:
+  - certbot
+  - certbot-dns-cloudflare

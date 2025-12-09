@@ -1,6 +1,6 @@
 services:
   certbot:
-    image: maliskovik/certbot
+    image: {{ letsencrypt_docker_image }}
     volumes:
       - type: bind
         source: /etc/letsencrypt
