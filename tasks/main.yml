@@ -40,23 +40,23 @@
 - ansible.builtin.include_tasks: install_centos.yml
   when:
     - "letsencrypt_install_method == 'native'"
-    - "ansible_facts["os_family"] == 'RedHat'"
+    - "ansible_facts['os_family'] == 'RedHat'"
 
 - ansible.builtin.include_tasks: install_archlinux.yml
   when:
     - "letsencrypt_install_method == 'native'"
-    - "ansible_facts["os_family"] == 'Archlinux'"
+    - "ansible_facts['os_family'] == 'Archlinux'"
 
 - ansible.builtin.include_tasks: install_ubuntu.yml
   when:
     - "letsencrypt_install_method == 'native'"
-    - "ansible_facts["os_family"] == 'Debian'"
+    - "ansible_facts['os_family'] == 'Debian'"
     - ansible_facts["architecture"] == "x86_64"
 
 - ansible.builtin.include_tasks: install_ubuntu-riscv.yml
   when:
     - "letsencrypt_install_method == 'native'"
-    - "ansible_facts["os_family"] == 'Debian'"
+    - "ansible_facts['os_family'] == 'Debian'"
     - ansible_facts["architecture"] == "riscv64"
 
 - ansible.builtin.include_tasks: install_docker.yml
